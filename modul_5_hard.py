@@ -27,7 +27,6 @@ class UrTube:
         self.current_user = None
 
     def register(self, nickname: str, password: str, age: int):
-        password = hash(password)
         for user in self.users:
             if user.nickname == nickname:
                 print(F"Пользователь {nickname} уже существует!")
@@ -38,9 +37,9 @@ class UrTube:
         self.current_user = new_user
 
 
-    def log_in(self, login: str, password: str):
+    def log_in(self, nickname: str, password: str):
         for user in self.users:
-            if login == user.nickname and password == user.password:
+            if user.nickname == nickname and user.password == hash(password):
                 self.current_user = user
 
     def log_out(self):
